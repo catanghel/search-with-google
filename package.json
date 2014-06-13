@@ -1,0 +1,12 @@
+{
+    "name": "catanghel.search-with-google",
+    "title": "Search with Google",
+    "description": "Adds Search with Google option to the file menu and context menu. Search selection on google.com",
+    "homepage": "https://github.com/catanghel/search-with-google",
+    "version": "0.1",
+    "author": "Catalin Anghel <catalin.anghel@gmail.com>",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.38.0"
+    }
+}
