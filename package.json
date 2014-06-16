@@ -5,11 +5,11 @@
     "homepage": "https://github.com/catanghel/search-with-google",
     "version": "0.2.0",
     "author": "Catalin Anghel <catalin.anghel@gmail.com>",
-	"keywords": [
-       "extension",
-       "search",
-	   "google", 
-	   "stackoverflow"
+    "keywords": [
+	"extension",
+	"search",
+	"google", 
+	"stackoverflow"
     ],
     "maintainers": [
        {
