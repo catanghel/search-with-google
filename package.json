@@ -1,10 +1,30 @@
 {
     "name": "catanghel.search-with-google",
     "title": "Search with Google",
-    "description": "Adds Search with Google option to the file menu and context menu. Search selection on google.com",
+    "description": "Adds search options to the file menu and context menu. Added Stackoverflow to the list",
     "homepage": "https://github.com/catanghel/search-with-google",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": "Catalin Anghel <catalin.anghel@gmail.com>",
+	"keywords": [
+       "extension",
+       "search",
+	   "google", 
+	   "stackoverflow"
+    ],
+    "maintainers": [
+       {
+           "name": "Catalin Anghel",
+           "email": "catalin.anghel@gmail.com",
+           "web": "https://github.com/catanghel/search-with-google" 
+       } 
+    ],
+    "contributors": [
+       {
+           "name": "Catalin Anghel",
+           "email": "catalin.anghel@gmail.com",
+           "web": "https://github.com/catanghel/search-with-google" 
+       } 
+    ],
     "license": "MIT",
     "engines": {
         "brackets": ">=0.38.0"
