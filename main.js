@@ -5,19 +5,20 @@ define(function (require, exports, module) {
     "use strict";
 
     var CommandManager = brackets.getModule("command/CommandManager"),
-		EditorManager  = brackets.getModule("editor/EditorManager"),
-        Menus          = brackets.getModule("command/Menus");
+	EditorManager  = brackets.getModule("editor/EditorManager"),
+        Menus          = brackets.getModule("command/Menus"),
+        NativeApp      = brackets.getModule("utils/NativeApp");
 
     function searchWithGoogle() {
 		var thisEditor = EditorManager.getCurrentFullEditor();
 		var query = thisEditor._codeMirror.getSelection();
-        window.open("https://www.google.com/#q=" + encodeURIComponent(query));
+        NativeApp.openURLInDefaultBrowser("https://www.google.com/#q=" + encodeURIComponent(query));
     }
 	
 	function searchOnStackOverflow() {
 		var thisEditor = EditorManager.getCurrentFullEditor();
 		var query = thisEditor._codeMirror.getSelection();
-        window.open("https://www.stackoverflow.com/search?q=" + encodeURIComponent(query));
+        NativeApp.openURLInDefaultBrowser("https://www.stackoverflow.com/search?q=" + encodeURIComponent(query));
     }
 
     var GOOGLE_SEARCH_COMMAND = "catanghel.searchwithgoogle"; 
