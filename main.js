@@ -11,13 +11,13 @@ define(function (require, exports, module) {
 
     function searchWithGoogle() {
 		var thisEditor = EditorManager.getCurrentFullEditor();
-		var query = thisEditor._codeMirror.getSelection();
+		var query = thisEditor.getSelectedText();
         NativeApp.openURLInDefaultBrowser("https://www.google.com/#q=" + encodeURIComponent(query));
     }
 	
     function searchOnStackOverflow() {
 		var thisEditor = EditorManager.getCurrentFullEditor();
-		var query = thisEditor._codeMirror.getSelection();
+		var query = thisEditor.getSelectedText();
         NativeApp.openURLInDefaultBrowser("https://www.stackoverflow.com/search?q=" + encodeURIComponent(query));
     }
 
