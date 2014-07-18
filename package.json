@@ -3,7 +3,7 @@
     "title": "Search with Google",
     "description": "Adds search options to the file menu and context menu. Added Stackoverflow to the list",
     "homepage": "https://github.com/catanghel/search-with-google",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "author": "Catalin Anghel <catalin.anghel@gmail.com>",
     "keywords": [
 	"extension",
