@@ -2,37 +2,44 @@
 /*global define, brackets */
 
 define(function (require, exports, module) {
-    "use strict";
+    'use strict';
 
-    var CommandManager = brackets.getModule("command/CommandManager"),
-		EditorManager  = brackets.getModule("editor/EditorManager"),
-        Menus          = brackets.getModule("command/Menus"),
-        NativeApp      = brackets.getModule("utils/NativeApp");
+    var CommandManager = brackets.getModule('command/CommandManager'),
+		EditorManager  = brackets.getModule('editor/EditorManager'),
+        Menus          = brackets.getModule('command/Menus'),
+        NativeApp      = brackets.getModule('utils/NativeApp');
 
-    function searchWithGoogle() {
-		var thisEditor = EditorManager.getCurrentFullEditor();
-		var query = thisEditor.getSelectedText();
-        NativeApp.openURLInDefaultBrowser("https://www.google.com/#q=" + encodeURIComponent(query));
+    
+    function SearchWithGoogle () {
+        this.sites = require('./data/sites').getSites();
+		this.fileMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
+		this.contextMenu = Menus.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU);
     }
 	
-    function searchOnStackOverflow() {
-		var thisEditor = EditorManager.getCurrentFullEditor();
-		var query = thisEditor.getSelectedText();
-        NativeApp.openURLInDefaultBrowser("https://www.stackoverflow.com/search?q=" + encodeURIComponent(query));
-    }
-
-    var GOOGLE_SEARCH_COMMAND = "catanghel.searchwithgoogle"; 
-    var STACKOVERFLOW_SEARCH_COMMAND = "catanghel.searchonstackoverflow";
+    
+	SearchWithGoogle.prototype.searchOn = function (site) {
+		var thisEditor = EditorManager.getCurrentFullEditor(),
+			query = thisEditor.getSelectedText();
+		if (query) {
+			NativeApp.openURLInDefaultBrowser(site.url + query);
+		}
+	}
 	
-    CommandManager.register("Search with Google", GOOGLE_SEARCH_COMMAND, searchWithGoogle);
-    CommandManager.register("Search on Stackoverflow", STACKOVERFLOW_SEARCH_COMMAND, searchOnStackOverflow);
+	SearchWithGoogle.prototype.registerMenuItems = function () {
+		var prop, site;
+		for (prop in this.sites) {
+			site = this.sites[prop];
+			if (site.active) {
+				CommandManager.register(site.title, site.command, $.proxy(this.searchOn, this, site));
+				this.fileMenu.addMenuItem(site.command, site.shortcut);
+				this.contextMenu.addMenuItem(site.command, site.shortcut);
+			}
+		}
+	}
+    
+    var searchWithGoogle = new SearchWithGoogle();
 
-    var fileMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
-    var contextMenu = Menus.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU);
-    fileMenu.addMenuDivider();
-    fileMenu.addMenuItem(GOOGLE_SEARCH_COMMAND, "Ctrl-Alt-G");
-	fileMenu.addMenuItem(STACKOVERFLOW_SEARCH_COMMAND, "Ctrl-Alt-W");
-	contextMenu.addMenuDivider();
-	contextMenu.addMenuItem(GOOGLE_SEARCH_COMMAND, "Ctrl-Alt-G");
-	contextMenu.addMenuItem(STACKOVERFLOW_SEARCH_COMMAND, "Ctrl-Alt-W");
+    searchWithGoogle.fileMenu.addMenuDivider();
+	searchWithGoogle.contextMenu.addMenuDivider();
+	searchWithGoogle.registerMenuItems();
 });
