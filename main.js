@@ -20,6 +20,10 @@ define(function (require, exports, module) {
 	SearchWithGoogle.prototype.searchOn = function (site) {
 		var thisEditor = EditorManager.getCurrentFullEditor(),
 			query = thisEditor.getSelectedText();
+		if (!query) {
+			// ask user for what to search
+			query = prompt('What do you search for ?');
+		}
 		if (query) {
 			NativeApp.openURLInDefaultBrowser(site.url + query);
 		}
