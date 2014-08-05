@@ -7,7 +7,8 @@ define(function (require, exports, module) {
     var CommandManager = brackets.getModule('command/CommandManager'),
 		EditorManager  = brackets.getModule('editor/EditorManager'),
         Menus          = brackets.getModule('command/Menus'),
-        NativeApp      = brackets.getModule('utils/NativeApp');
+        NativeApp      = brackets.getModule('utils/NativeApp'),
+		Prompt		   = require('./util/Prompt');
 
     
     function SearchWithGoogle () {
@@ -19,9 +20,14 @@ define(function (require, exports, module) {
     
 	SearchWithGoogle.prototype.searchOn = function (site) {
 		var thisEditor = EditorManager.getCurrentFullEditor(),
-			query = thisEditor.getSelectedText();
+			query = thisEditor.getSelectedText(),
+			search = function (value) {
+				NativeApp.openURLInDefaultBrowser(site.url + value);
+			};
 		if (query) {
-			NativeApp.openURLInDefaultBrowser(site.url + query);
+			search(query);
+		} else {
+			Prompt.showPromptDialog('Brackets says:', 'What are you searching for?', search, this);
 		}
 	}
 	
