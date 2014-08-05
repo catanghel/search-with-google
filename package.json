@@ -1,7 +1,7 @@
 {
     "name": "catanghel.search-with-google",
     "title": "Search with Google",
-    "description": "Adds search options to the file menu and context menu. Added Stackoverflow to the list",
+    "description": "Adds search options to the file menu and context menu.",
     "homepage": "https://github.com/catanghel/search-with-google",
     "version": "0.4.0",
     "author": "Catalin Anghel <catalin.anghel@gmail.com>",
