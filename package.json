@@ -3,15 +3,15 @@
     "title": "Search with Google",
     "description": "Adds search options to the file menu and context menu. Added Stackoverflow to the list",
     "homepage": "https://github.com/catanghel/search-with-google",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "author": "Catalin Anghel <catalin.anghel@gmail.com>",
     "keywords": [
-	   "extension",
-	   "search",
-	   "google", 
-	   "stackoverflow",
-       "php.net",
-       "MDN"
+		"extension",
+	   	"search",
+	   	"google", 
+	   	"stackoverflow",
+       	"php.net",
+       	"MDN"
     ],
     "maintainers": [
        {
